@@ -1,5 +1,7 @@
 name: Windows
 on: 
+  # Enables a "Run workflow" button on the Actions tab; 手动运行 workflow
+  workflow_dispatch:
   # push代码时触发workflow
   push:
     paths:
