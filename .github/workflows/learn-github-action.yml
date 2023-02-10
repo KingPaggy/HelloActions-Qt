@@ -8,5 +8,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: pwd
+        shell: pwsh
         run: | 
           echo "Hello, world!"
+          echo "uname"
+          uname
+          echo "Current Working Dir:"
+          pwd
+
