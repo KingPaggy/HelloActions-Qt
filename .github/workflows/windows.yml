@@ -87,5 +87,5 @@ jobs:
       # 上传artifacts          
       - name: test $GITHUB_OUTPUT
         shell: pwsh
-        run: echo ${{ steps.package.outputs.packageName }}
+        run: echo "${{ steps.package.outputs.packageName }}"
 
