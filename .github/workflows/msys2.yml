@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: windows-latese
+    runs-on: windows-latest
     strategy:
       matrix:
         include:
