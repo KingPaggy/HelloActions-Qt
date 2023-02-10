@@ -28,7 +28,6 @@ jobs:
           update: true
           msystem: ${{matrix.sys}}
           install: >-
-          base-devel 
           mingw-w64-${{matrix.env}}-toolchain
           mingw-w64-${{matrix.env}}-cmake
           mingw-w64-${{matrix.env}}-qt6
@@ -43,5 +42,5 @@ jobs:
         run: |
           uname -a
           ls -l
-          
+          pacman -S base-devel 
 
