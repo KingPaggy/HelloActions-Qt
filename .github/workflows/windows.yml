@@ -107,7 +107,7 @@ jobs:
       
       # tag 上传Release
       - name: Upload files to Release
-        if: startWith(github.event.ref, 'refs/tags/')
+        if: startsWith(github.event.ref, 'refs/tags/')
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
