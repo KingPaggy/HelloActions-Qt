@@ -65,10 +65,10 @@ jobs:
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.msvc_arch }}
           qmake
           nmake
-          echo winSdkDir=%WindowsSdkDir% >> %GITHUB_ENV%
-          echo winSdkVer=%WindowsSdkVersion% >> %GITHUB_ENV%
-          echo vcToolsInstallDir=%VCToolsInstallDir% >> %GITHUB_ENV%
-          echo vcToolsRedistDir=%VCToolsRedistDir% >> %GITHUB_ENV%
+          echo winSdkDir=%WindowsSdkDir% >> $GITHUB_ENV
+          echo winSdkVer=%WindowsSdkVersion% >> $GITHUB_ENV
+          echo vcToolsInstallDir=%VCToolsInstallDir% >> $GITHUB_ENV
+          echo vcToolsRedistDir=%VCToolsRedistDir% >> $GITHUB_ENV
       # 打包 
       - name: package
         id: package      
@@ -77,8 +77,8 @@ jobs:
           msvcArch: ${{ matrix.msvc_arch }}          
         shell: pwsh
         run: |        
-          & scripts\windows-publish.ps1 ${env:archiveName} ${env:targetName}
-          $name = ${env:archiveName}
+          & scripts\windows-publish.ps1 ${{ env:archiveName }} ${{ env:targetName }}
+          $name = ${{ env:archiveName }}
           echo "packageName=$name" >> $GITHUB_OUTPUT
       # tag 查询github-Release
       # 上传artifacts          
