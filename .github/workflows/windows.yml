@@ -81,7 +81,7 @@ jobs:
           New-Item -ItemType Directory $env:archiveName
           # 拷贝exe
           Copy-Item .\bin\release\$targetName .\$env:archiveName\
-          Get-ChildItem .\$env:archiveName | Write-Host
+          Get-ChildItem -Recurse .\$env:archiveName | Write-Host
 
           # 拷贝依赖
           windeployqt --qmldir . --plugindir .\$env:archiveName\plugins --no-translations --compiler-runtime .\$env:archiveName\$env:targetName
