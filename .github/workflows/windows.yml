@@ -94,8 +94,6 @@ jobs:
           # 打包zip
           Compress-Archive -Path .\$env:archiveName $env:archiveName'.zip'
 
-          Get-ChildItem
-
           Write-Output "packageName=${{ env.archiveName }}" >> $env:GITHUB_OUTPUT
 
       # tag 查询github-Release
