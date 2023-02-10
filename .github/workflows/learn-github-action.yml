@@ -12,7 +12,7 @@ jobs:
         run: | 
           echo "Hello, world!"
           echo "uname"
-          uname
+          uname -a
           echo "Current Working Dir:"
           pwd
 
