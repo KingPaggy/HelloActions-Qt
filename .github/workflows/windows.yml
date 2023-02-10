@@ -108,7 +108,7 @@ jobs:
           echo "packageName=$name" >> $GITHUB_OUTPUT
       # tag 查询github-Release
       # 上传artifacts          
-      - uses: actions/upload-artifact
+      - uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.package.outputs.packageName }}
           path: ${{ steps.package.outputs.packageName }}
