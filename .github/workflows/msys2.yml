@@ -1,0 +1,47 @@
+name: Windows Msys2
+
+on: 
+  push:
+    paths:
+      -  '.github/workflows/msys2.yml'
+      - '*.pro'
+      - 'src/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latese
+    strategy:
+      matrix:
+        include:
+          - { sys: mingw64, env: x86_64 }
+          - { sys: mingw32, env: i686 }
+          # - { sys: ucrt64,  env: ucrt-x86_64 }
+          # - { sys: clang64, env: clang-x86_64 }
+    env:
+      targetName: HelloActions-Qt.exe
+    steps:
+      - name: Setup Msys2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: ${{matrix.sys}}
+          install: >-
+          base-devel 
+          mingw-w64-${{matrix.env}}-toolchain
+          mingw-w64-${{matrix.env}}-cmake
+          mingw-w64-${{matrix.env}}-qt6
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: test Msys2 Env
+        shell: msys2 {0}
+        run: |
+          uname -a
+          ls -l
+          
+

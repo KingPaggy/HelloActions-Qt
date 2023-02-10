@@ -1,6 +1,12 @@
 name: Learn GA
 
-on: [workflow_dispatch, push]
+on: 
+  workflow_dispatch:
+  push:
+    paths:
+      - '*.pro'
+      - 'src/**'
+      - '.github/workflows/learn-github-action.yml'
 
 jobs:
   some_command:
