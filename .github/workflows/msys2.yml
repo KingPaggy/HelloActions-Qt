@@ -48,4 +48,3 @@ jobs:
         run: |
           # qmake
           ls -l
-
