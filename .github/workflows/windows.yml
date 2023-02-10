@@ -42,10 +42,10 @@ jobs:
           #   msvc_arch: x64
           #   qt_arch_install: msvc2017_64
           # 5.15.2 参考 https://mirrors.cloud.tencent.com/qt/online/qtsdkrepository/windows_x86/desktop/qt5_5152/
-          - qt_ver: 5.15.2
-            qt_arch: win32_msvc2019
-            msvc_arch: x86
-            qt_arch_install: msvc2019
+          # - qt_ver: 5.15.2
+          #   qt_arch: win32_msvc2019
+          #   msvc_arch: x86
+          #   qt_arch_install: msvc2019
           - qt_ver: 5.15.2          
             qt_arch: win64_msvc2019_64
             msvc_arch: x64
@@ -102,9 +102,12 @@ jobs:
         run: |
           & scripts\windows-publish.ps1 ${env:archiveName} ${env:targetName}
           # 记录packageName给后续step
-          # $name = ${env:archiveName}
+          $name = ${env:archiveName}
+          echo ${env:archiveName}
           # echo "::set-output name=packageName::$name" # fully disable on 31st May 2023
-           echo "packageName=${env:archiveName}" >> $GITHUB_OUTPUT
+          echo "packageName=$name" >> $GITHUB_OUTPUT
+      - name: debug
+        run: echo ${{ steps.package.outputs.packageName }}
       # tag 查询github-Release
       # 上传artifacts          
       - uses: actions/upload-artifact@v2
