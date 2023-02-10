@@ -78,7 +78,7 @@ jobs:
         shell: pwsh
         run: |        
           & scripts\windows-publish.ps1 ${{ env.archiveName }} ${{ env.targetName }}
-          $name = ${{ env.archiveName }}
+          $name = "${{ env.archiveName }}"
           echo "packageName=$name" >> $GITHUB_OUTPUT
       # tag 查询github-Release
       # 上传artifacts          
