@@ -102,12 +102,12 @@ jobs:
         run: |
           & scripts\windows-publish.ps1 ${env:archiveName} ${env:targetName}
           # 记录packageName给后续step
-           $name = ${env:archiveName}
+          # $name = ${env:archiveName}
           # echo "::set-output name=packageName::$name" # fully disable on 31st May 2023
-           echo "packageName=$name" >> $GITHUB_OUTPUT
+           echo "packageName=${{ env:archiveName }}" >> $GITHUB_OUTPUT
       # tag 查询github-Release
       # 上传artifacts          
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.package.outputs.packageName }}
           path: ${{ steps.package.outputs.packageName }}
