@@ -80,7 +80,7 @@ jobs:
           # & scripts\windows-publish.ps1 $archiveName $targetName
           New-Item -ItemType Directory $env:archiveName
           # 拷贝exe
-          Copy-Item bin\release\$targetName $archiveName
+          Copy-Item bin\release\$targetName $env:archiveName
           # 拷贝依赖
           windeployqt --qmldir . --plugindir $archiveName\plugins --no-translations --compiler-runtime $archiveName\$targetName
           # 删除不必要的文件
