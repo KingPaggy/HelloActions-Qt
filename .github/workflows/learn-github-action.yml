@@ -5,14 +5,25 @@ on: workflow_dispatch
 jobs:
   some_command:
     name: Run Sth
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
-      - name: pwd
+      - name: run sth 1
         shell: pwsh
         run: | 
           echo "Hello, world!"
+          
           echo "uname"
           uname -a
+          
           echo "Current Working Dir:"
           pwd
-
+          
+          echo "Print path to pwsh.exe"
+          which pwsh
+          
+      - uses: actions/checkout@v2
+      - name: run sth 2
+        shell: pwsh
+        run: |
+          echo "ls:"
+          ls
