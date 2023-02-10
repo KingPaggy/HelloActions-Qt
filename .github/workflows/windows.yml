@@ -85,9 +85,9 @@ jobs:
           windeployqt --qmldir . --plugindir $archiveName\plugins --no-translations --compiler-runtime $archiveName\$targetName
           # 删除不必要的文件
           $excludeList = @("*.qmlc", "*.ilk", "*.exp", "*.lib", "*.pdb")
-          Remove-Item -Path $archiveName -Include $excludeList -Recurse -Force
+          Remove-Item -Path $env:archiveName -Include $excludeList -Recurse -Force
           # 打包zip
-          Compress-Archive -Path $archiveName $archiveName'.zip'
+          Compress-Archive -Path $env:archiveName $archiveName'.zip'
 
           echo "packageName=$archiveName" >> $GITHUB_OUTPUT
       # tag 查询github-Release
