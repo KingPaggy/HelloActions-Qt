@@ -1,0 +1,12 @@
+name: Learn GA
+
+on: workflow_dispatch
+
+jobs:
+  some_command:
+    name: Run Sth
+    runs-on: windows-latest
+    steps:
+      - name: pwd
+        run: | 
+          echo "Hello, world!"
