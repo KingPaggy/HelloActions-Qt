@@ -42,5 +42,10 @@ jobs:
         run: |
           uname -a
           ls -l
-           
+      
+      - name: build
+        shell: msys2 {0}
+        run: |
+          qmake
+          ls -l
 
