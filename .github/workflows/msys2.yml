@@ -28,9 +28,9 @@ jobs:
           update: true
           msystem: ${{matrix.sys}}
           install: >-
-          mingw-w64-${{matrix.env}}-toolchain
-          mingw-w64-${{matrix.env}}-cmake
-          mingw-w64-${{matrix.env}}-qt6
+            mingw-w64-${{matrix.env}}-toolchain
+            mingw-w64-${{matrix.env}}-cmake
+            mingw-w64-${{matrix.env}}-qt6
 
       - name: Checkout
         uses: actions/checkout@v2
