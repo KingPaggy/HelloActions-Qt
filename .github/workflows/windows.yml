@@ -80,7 +80,7 @@ jobs:
           # .\scripts\windows-publish.ps1 $env:archiveName $env:targetName
           New-Item -ItemType Directory $env:archiveName
           # 拷贝exe
-          Copy-Item .\bin\release\$targetName .\$env:archiveName\
+          Copy-Item .\bin\release\$env:targetName .\$env:archiveName\
           Get-ChildItem -Recurse .\$env:archiveName | Write-Host
 
           # 拷贝依赖
