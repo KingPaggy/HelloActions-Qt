@@ -21,7 +21,7 @@ jobs:
           echo "Print path to pwsh.exe"
           which pwsh
           
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: run sth 2
         shell: pwsh
         run: |
