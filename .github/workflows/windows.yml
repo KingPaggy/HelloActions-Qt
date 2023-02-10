@@ -77,9 +77,19 @@ jobs:
           msvcArch: ${{ matrix.msvc_arch }}          
         shell: pwsh
         run: |        
-          & scripts\windows-publish.ps1 $archiveName $targetName
-          $name = "${{ env.archiveName }}"
-          echo "packageName=$name" >> $GITHUB_OUTPUT
+          # & scripts\windows-publish.ps1 $archiveName $targetName
+          New-Item -ItemType Directory $archiveName
+          # 拷贝exe
+          Copy-Item bin\release\$targetName $archiveName\
+          # 拷贝依赖
+          windeployqt --qmldir . --plugindir $archiveName\plugins --no-translations --compiler-runtime $archiveName\$targetName
+          # 删除不必要的文件
+          $excludeList = @("*.qmlc", "*.ilk", "*.exp", "*.lib", "*.pdb")
+          Remove-Item -Path $archiveName -Include $excludeList -Recurse -Force
+          # 打包zip
+          Compress-Archive -Path $archiveName $archiveName'.zip'
+
+          echo "packageName=$archiveName" >> $GITHUB_OUTPUT
       # tag 查询github-Release
       # 上传artifacts          
       - uses: actions/upload-artifact@v3
