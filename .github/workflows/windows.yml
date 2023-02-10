@@ -106,11 +106,9 @@ jobs:
           echo ${env:archiveName}
           # echo "::set-output name=packageName::$name" # fully disable on 31st May 2023
           echo "packageName=$name" >> $GITHUB_OUTPUT
-      - name: debug
-        run: echo ${{ steps.package.outputs.packageName }}
       # tag 查询github-Release
       # 上传artifacts          
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact
         with:
           name: ${{ steps.package.outputs.packageName }}
           path: ${{ steps.package.outputs.packageName }}
