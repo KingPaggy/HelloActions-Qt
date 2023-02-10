@@ -106,8 +106,7 @@ jobs:
           name: ${{ steps.package.outputs.packageName }}
       
       # tag 上传Release
-      - name: uploadRelease
-        if: startsWith(github.event.ref, 'refs/tags/')
+      - name: Upload files to Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
