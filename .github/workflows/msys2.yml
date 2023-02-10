@@ -46,6 +46,6 @@ jobs:
       - name: build
         shell: msys2 {0}
         run: |
-          qmake
+          # qmake
           ls -l
 
