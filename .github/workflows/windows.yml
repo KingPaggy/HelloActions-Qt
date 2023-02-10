@@ -77,17 +77,17 @@ jobs:
           msvcArch: ${{ matrix.msvc_arch }}          
         shell: pwsh
         run: |        
-          .\scripts\windows-publish.ps1 $env:archiveName $env:targetName
-          # New-Item -ItemType Directory $env:archiveName
-          # # 拷贝exe
-          # Copy-Item bin\release\$targetName $env:archiveName\$targetName
-          # # 拷贝依赖
-          # windeployqt --qmldir . --plugindir $env:archiveName\plugins --no-translations --compiler-runtime $env:archiveName\$env:targetName
-          # # 删除不必要的文件
-          # $excludeList = @("*.qmlc", "*.ilk", "*.exp", "*.lib", "*.pdb")
-          # Remove-Item -Path $env:archiveName -Include $excludeList -Recurse -Force
-          # # 打包zip
-          # Compress-Archive -Path $env:archiveName $env:archiveName'.zip'
+          # .\scripts\windows-publish.ps1 $env:archiveName $env:targetName
+          New-Item -ItemType Directory $env:archiveName
+          # 拷贝exe
+          Copy-Item .\bin\release\$targetName .\$env:archiveName\$targetName
+          # 拷贝依赖
+          windeployqt --qmldir . --plugindir .\$env:archiveName\plugins --no-translations --compiler-runtime .\$env:archiveName\$env:targetName
+          # 删除不必要的文件
+          $excludeList = @("*.qmlc", "*.ilk", "*.exp", "*.lib", "*.pdb")
+          Remove-Item -Path .\$env:archiveName -Include $excludeList -Recurse -Force
+          # 打包zip
+          Compress-Archive -Path .\$env:archiveName $env:archiveName'.zip'
 
           echo "packageName=$archiveName" >> $GITHUB_OUTPUT
       # tag 查询github-Release
