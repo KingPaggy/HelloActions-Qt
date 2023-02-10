@@ -94,14 +94,16 @@ jobs:
           # 打包zip
           Compress-Archive -Path .\$env:archiveName $env:archiveName'.zip'
 
+          Get-ChildItem
+
           echo "packageName=${{ env.archiveName }}" >> $GITHUB_OUTPUT
 
       # tag 查询github-Release
       # 上传artifacts          
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.package.outputs.packageName }}
           path: ${{ steps.package.outputs.packageName }}
+          name: ${{ steps.package.outputs.packageName }}
       
       # tag 上传Release
       - name: uploadRelease
