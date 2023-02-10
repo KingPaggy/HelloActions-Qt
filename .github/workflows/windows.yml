@@ -53,10 +53,12 @@ jobs:
           arch: ${{ matrix.qt_arch }}
           cached: 'false'
           aqtversion: '==2.0.5'          
+
       # 拉取代码
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
+
       # msvc编译
       - name: msvc-build
         id: build
@@ -69,6 +71,7 @@ jobs:
           echo winSdkVer=%WindowsSdkVersion% >> $GITHUB_ENV
           echo vcToolsInstallDir=%VCToolsInstallDir% >> $GITHUB_ENV
           echo vcToolsRedistDir=%VCToolsRedistDir% >> $GITHUB_ENV
+
       # 打包 
       - name: package
         id: package      
@@ -91,13 +94,15 @@ jobs:
           # 打包zip
           Compress-Archive -Path .\$env:archiveName $env:archiveName'.zip'
 
-          echo "packageName=$archiveName" >> $GITHUB_OUTPUT
+          echo "packageName=$env:archiveName" >> $GITHUB_OUTPUT
+
       # tag 查询github-Release
       # 上传artifacts          
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.package.outputs.packageName }}
           path: ${{ steps.package.outputs.packageName }}
+      
       # tag 上传Release
       - name: uploadRelease
         if: startsWith(github.event.ref, 'refs/tags/')
